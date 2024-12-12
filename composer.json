@@ -1,0 +1,42 @@
+{
+    "name": "dimitri/wp-module-hook",
+    "description": "Easily manage hooks in WordPress.",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dimitri BOUTEILLE",
+            "email": "bonjour@dimitri-bouteille.fr",
+            "homepage": "https://github.com/dimitriBouteille",
+            "role": "Developer"
+        }
+    ],
+    "keywords": ["wordpress", "wp", "wordpress-starter", "hook", "filter", "wordpress-development"],
+    "homepage": "https://github.com/dimitriBouteille/wp-module-hook",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "support": {
+        "issues": "https://github.com/dimitriBouteille/wp-module-hook/issues",
+        "source": "https://github.com/dimitriBouteille/wp-module-hook"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dimitri\\WpHook\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=8.2",
+        "psr/cache": "^1.0|^2.0|^3.0"
+    },
+    "require-dev": {
+        "rector/rector": "^2.0",
+        "phpstan/phpstan": "^2.0",
+        "friendsofphp/php-cs-fixer": "^3.65"
+    },
+    "scripts": {
+        "rector": "vendor/bin/rector process src --dry-run",
+        "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon",
+        "csFixer:check": "vendor/bin/php-cs-fixer fix --verbose --diff --dry-run",
+        "csFixer": "vendor/bin/php-cs-fixer fix"
+    }
+}
