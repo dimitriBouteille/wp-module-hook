@@ -31,12 +31,18 @@
     "require-dev": {
         "rector/rector": "^2.0",
         "phpstan/phpstan": "^2.0",
-        "friendsofphp/php-cs-fixer": "^3.65"
+        "friendsofphp/php-cs-fixer": "^3.65",
+        "roots/wordpress": "^6.7"
     },
     "scripts": {
         "rector": "vendor/bin/rector process src --dry-run",
         "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon",
         "csFixer:check": "vendor/bin/php-cs-fixer fix --verbose --diff --dry-run",
         "csFixer": "vendor/bin/php-cs-fixer fix"
+    },
+    "config": {
+        "allow-plugins": {
+            "roots/wordpress-core-installer": true
+        }
     }
 }
