@@ -44,5 +44,13 @@
         "allow-plugins": {
             "roots/wordpress-core-installer": true
         }
+    },
+    "extra": {
+        "phpstan": {
+            "includes": [
+                "extension.neon"
+            ]
+        },
+        "wordpress-install-dir": "web/wordpress"
     }
 }

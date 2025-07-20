@@ -16,9 +16,6 @@ return RectorConfig::configure()
     ->withPaths([
         __DIR__ . '/src',
     ])
-    ->withRules([
-        TypedPropertyFromStrictConstructorRector::class,
-    ])
     ->withPreparedSets(
         codeQuality: true,
         typeDeclarations: true,
