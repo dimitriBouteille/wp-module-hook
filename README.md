@@ -36,77 +36,11 @@ In your PHP script, make sure you include the autoloader:
 require __DIR__ . '/vendor/autoload.php';
 ~~~
 
-## Usage
-
-Before creating your first hook, you must initialize the module. It is advisable to add this code at the beginning of the `functions.php` file of your theme or in a mu-plugin.
-
-```php
-<?php
-
-use Dbout\WpHook\HookLoader;
-
-$loader = new HookLoader(
-    directory: __DIR__ . '/src/Hooks'
-);
-
-$loader->register();
-```
-
-If you want to load hooks from multiple directories, you can pass an array in the `directory` argument. Additionally, you can use a pattern to define the path :
-
-```php
-<?php
-
-use Dbout\WpHook\HookLoader;
-
-$loader = new HookLoader(
-    directory: [
-        __DIR__ . '/app/Hooks',
-        __DIR__ . '/theme/*/Hooks'
-    ],
-);
-```
-
-The `register` function will automatically search all hooks (action or filter) in the `directory` that need to be loaded into WordPress.
-
-Now you have initialized the loader, you just need to create your first hook :
-
-```php
-<?php
-use Dbout\WpHook\Attributes\Action
-
-#[Action(
-    name: 'admin_menu'
-)]
-class EditAdminMenu 
-{    
-    public function __invoke()
-    {
-        // Add your logic 
-    }
-}
-```
-
-You can also create filter hook :
-
-```php
-<?php
-use Dbout\WpHook\Attributes\Filter
-
-#[Filter(
-    name: 'crontrol/filtered-events',
-    acceptedArgs: 2,
-)]
-class EditEvents 
-{    
-    public function __invoke(array $filtered, array $events): array
-    {
-        // Add your logic 
-        return $events;
-    }
-}
-```
 
 ## Contributing
 
-We encourage you to contribute to this repository, so everyone can benefit from new features, bug fixes, and any other improvements. Have a look at our [contributing guidelines](CONTRIBUTING.md) to find out how to raise a pull request.
+💕 🦄 We encourage you to contribute to this repository, so everyone can benefit from new features, bug fixes, and any other improvements. Have a look at our [contributing guidelines](CONTRIBUTING.md) to find out how to raise a pull request.
+
+## Licence
+
+Licensed under the MIT license, see [LICENSE](LICENSE).
