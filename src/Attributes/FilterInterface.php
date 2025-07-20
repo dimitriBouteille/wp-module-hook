@@ -46,7 +46,7 @@ interface FilterInterface
     /**
      * List of dependencies on which the action depends.
      *
-     * @return array
+     * @return array<string|string[]>
      */
     public function getDependencies(): array;
 }

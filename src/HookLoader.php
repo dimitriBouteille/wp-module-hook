@@ -20,7 +20,7 @@ class HookLoader
     private const CACHE_KEY = '_app_wp_autoloader_hooks';
 
     /**
-     * @param string|array $directory
+     * @param string|array<string> $directory
      * @param CacheItemPoolInterface|null $cache
      */
     public function __construct(
@@ -76,7 +76,7 @@ class HookLoader
 
     /**
      * @throws HookException
-     * @return array
+     * @return array<string>
      */
     protected function getDirectories(): array
     {
@@ -131,7 +131,7 @@ class HookLoader
 
     /**
      * @param Action $action
-     * @return array
+     * @return array<string, mixed>
      */
     protected function getHookArg(Action $action): array
     {

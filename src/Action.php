@@ -12,6 +12,15 @@ use Dbout\WpHook\Enums\ActionType;
 
 readonly class Action
 {
+    /**
+     * @param string $name
+     * @param int $priority
+     * @param int $acceptedArgs
+     * @param mixed $classInstance
+     * @param string $methodName
+     * @param array<string, string[]> $dependencies
+     * @param ActionType $actionType
+     */
     public function __construct(
         public string $name,
         public int $priority,
