@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Dimitri\\WpHook\\": "src/"
+            "Dbout\\WpHook\\": "src/"
         }
     },
     "require": {
