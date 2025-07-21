@@ -24,6 +24,11 @@
             "Dbout\\WpHook\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Dbout\\WpHook\\Tests\\": "tests/"
+        }
+    },
     "require": {
         "php": ">=8.2",
         "psr/cache": "^1.0|^2.0|^3.0"
@@ -34,13 +39,15 @@
         "friendsofphp/php-cs-fixer": "^3.65",
         "roots/wordpress": "^6.7",
         "szepeviktor/phpstan-wordpress": "^2.0",
-        "phpstan/extension-installer": "^1.4"
+        "phpstan/extension-installer": "^1.4",
+        "phpunit/phpunit": "^12.0"
     },
     "scripts": {
         "rector": "vendor/bin/rector process src --dry-run",
         "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon",
         "csFixer:check": "vendor/bin/php-cs-fixer fix --verbose --diff --dry-run",
-        "csFixer": "vendor/bin/php-cs-fixer fix"
+        "csFixer": "vendor/bin/php-cs-fixer fix",
+        "phpunit": "vendor/bin/phpunit"
     },
     "config": {
         "allow-plugins": {
