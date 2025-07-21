@@ -32,7 +32,9 @@
         "rector/rector": "^2.0",
         "phpstan/phpstan": "^2.0",
         "friendsofphp/php-cs-fixer": "^3.65",
-        "roots/wordpress": "^6.7"
+        "roots/wordpress": "^6.7",
+        "szepeviktor/phpstan-wordpress": "^2.0",
+        "phpstan/extension-installer": "^1.4"
     },
     "scripts": {
         "rector": "vendor/bin/rector process src --dry-run",
@@ -42,7 +44,8 @@
     },
     "config": {
         "allow-plugins": {
-            "roots/wordpress-core-installer": true
+            "roots/wordpress-core-installer": true,
+            "phpstan/extension-installer": true
         }
     },
     "extra": {

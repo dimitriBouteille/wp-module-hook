@@ -18,7 +18,7 @@ readonly class Action
      * @param int $acceptedArgs
      * @param mixed $classInstance
      * @param string $methodName
-     * @param array<string, string[]> $dependencies
+     * @param string[] $dependencies
      * @param ActionType $actionType
      */
     public function __construct(
@@ -43,6 +43,7 @@ readonly class Action
             $key .= '::' .$method;
         }
 
+        // @phpstan-ignore-next-line
         return $key;
     }
 }

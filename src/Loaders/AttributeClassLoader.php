@@ -18,6 +18,7 @@ class AttributeClassLoader implements InterfaceLoader
 {
     /**
      * @inheritDoc
+     * @return Action[]
      */
     public function load(mixed $resource): array
     {
@@ -50,7 +51,7 @@ class AttributeClassLoader implements InterfaceLoader
     }
 
     /**
-     * @param \ReflectionClass $class
+     * @param \ReflectionClass<object> $class
      * @throws HookException
      * @return FilterInterface|null
      */
@@ -99,7 +100,7 @@ class AttributeClassLoader implements InterfaceLoader
     }
 
     /**
-     * @param \ReflectionMethod|\ReflectionClass $subject
+     * @param \ReflectionMethod|\ReflectionClass<object> $subject
      * @return array<FilterInterface|null>
      */
     protected function getAttribute(\ReflectionMethod|\ReflectionClass $subject): array
@@ -115,7 +116,7 @@ class AttributeClassLoader implements InterfaceLoader
 
     /**
      * @param FilterInterface $filter
-     * @param \ReflectionClass $class
+     * @param \ReflectionClass<object> $class
      * @param string $fncName
      * @throws HookException
      * @throws \ReflectionException

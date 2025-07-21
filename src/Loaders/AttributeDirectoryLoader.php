@@ -8,6 +8,7 @@
 
 namespace Dbout\WpHook\Loaders;
 
+use Dbout\WpHook\Action;
 use Dbout\WpHook\FileLocators\FileLocatorInterface;
 
 class AttributeDirectoryLoader
@@ -28,7 +29,7 @@ class AttributeDirectoryLoader
     /**
      * @param string $file
      * @throws \Exception
-     * @return array
+     * @return Action[]
      */
     public function load(string $file): array
     {
@@ -58,7 +59,7 @@ class AttributeDirectoryLoader
 
             /** @var class-string|null $class */
             $class = $this->findClass($file);
-            if ($class === null || $class === '' || !class_exists($class)) {
+            if ($class === null || !class_exists($class)) {
                 continue;
             }
 
@@ -82,10 +83,15 @@ class AttributeDirectoryLoader
      */
     protected function findClass(\SplFileInfo $file): ?string
     {
+        $content = file_get_contents($file->getRealPath());
+        if ($content === false) {
+            return null;
+        }
+
         $class = false;
         $namespace = false;
-        $tokens = token_get_all(file_get_contents($file->getRealPath()));
 
+        $tokens = token_get_all($content);
         if (1 === \count($tokens) && \T_INLINE_HTML === $tokens[0][0]) {
             throw new \InvalidArgumentException(\sprintf('The file "%s" does not contain PHP code. Did you forgot to add the "<?php" start tag at the beginning of the file?', $file));
         }
