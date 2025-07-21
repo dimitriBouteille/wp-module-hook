@@ -10,14 +10,13 @@ $finder = \PhpCsFixer\Finder::create()
     ->name('*.php')
     ->in([
         'src',
+        'tests/Unit'
     ])
 ;
 
 $header = <<<EOF
     Copyright (c) Dimitri BOUTEILLE (https://github.com/dimitriBouteille)
     See LICENSE.txt for license details.
-
-    Author: Dimitri BOUTEILLE <bonjour@dimitri-bouteille.fr>
     EOF;
 
 $config = new \PhpCsFixer\Config();
