@@ -1,6 +1,6 @@
 {
-    "name": "dimitri/wp-module-hook",
-    "description": "Easily manage hooks in WordPress.",
+    "name": "dbout/wp-module-hook",
+    "description": "Magic hook autoloader for WordPress. ",
     "type": "package",
     "license": "MIT",
     "authors": [
