@@ -2,15 +2,13 @@
 /**
  * Copyright (c) Dimitri BOUTEILLE (https://github.com/dimitriBouteille)
  * See LICENSE.txt for license details.
- *
- * Author: Dimitri BOUTEILLE <bonjour@dimitri-bouteille.fr>
  */
 
 $finder = \PhpCsFixer\Finder::create()
     ->name('*.php')
     ->in([
         'src',
-        'tests/Unit'
+        'tests/Unit',
     ])
 ;
 
