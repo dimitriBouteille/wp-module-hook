@@ -1,4 +1,4 @@
-# WordPress hook
+# WordPress hook autoloader
 
 ![GitHub Release](https://img.shields.io/github/v/release/dimitriBouteille/wp-module-hook) [![Packagist Downloads](https://img.shields.io/packagist/dt/dbout/wp-module-hook?color=yellow)](https://packagist.org/packages/dbout/wp-module-hook)
 
@@ -11,7 +11,7 @@ WordPress module developed for developers who want to quickly add WordPress hook
 
 This documentation only covers the specific points of this library, if you want to know more about WordPress `action` or `filter`, the easiest is to look at [the documentation of WordPress](https://developer.wordpress.org/plugins/hooks/).
 
-You can find all the documentation in [the wiki](https://github.com/dimitriBouteille/wp-module-hook/wiki).
+You can find all the documentation in [the wiki](https://github.com/dimitriBouteille/wp-module-hook/wiki) or [here](#usage).
 
 ## Installation
 
@@ -36,6 +36,40 @@ In your PHP script, make sure you include the autoloader:
 require __DIR__ . '/vendor/autoload.php';
 ~~~
 
+## Usage
+
+Before creating your first hook, you must initialize the module. It is advisable to add this code at the beginning of the `functions.php` file of your theme or in a `mu-plugin`.
+
+```php
+$loader = new \Dbout\Framework\Hook\HookLoader(
+    directory: get_template_directory() . '/hooks',
+);
+
+$loader->register();
+```
+
+Now you have initialized the module, you just need to create your first action in the hooks folder in your theme.
+
+```php
+use Dbout\Framework\Hook\Attributes\Action;
+use Dbout\Framework\Hook\Attributes\Filter;
+
+class MyFirstHook {
+
+    #[Action(name: 'wp_dashboard_setup', priority: 999)]
+    public function setupDashboard(): void
+    {
+        // Do something   
+    }
+    
+    #[Filter(name: 'crontrol/filtered-events', acceptedArgs: 2)]
+    public function filterEvents(array $filtered, array $events): array
+    {
+        // Do something
+        return $filtered;
+    }
+}
+```
 
 ## Contributing
 
