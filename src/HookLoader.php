@@ -15,7 +15,7 @@ use Psr\Cache\CacheItemPoolInterface;
 
 class HookLoader
 {
-    private const CACHE_KEY = '_app_wp_autoloader_hooks';
+    private const string CACHE_KEY = '_app_wp_autoloader_hooks';
 
     /**
      * @param string|array<string> $directory
