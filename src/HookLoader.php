@@ -41,7 +41,10 @@ class HookLoader
         $cacheRoutes = $this->cache->getItem(self::CACHE_KEY);
         if ($cacheRoutes->isHit()) {
             try {
-                return unserialize($cacheRoutes->get());
+                $result = unserialize($cacheRoutes->get());
+                if (is_array($result)) {
+                    return $result;
+                }
             } catch (\Exception) {
             }
         }
