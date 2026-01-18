@@ -10,21 +10,33 @@ use Dbout\WpHook\Enums\ActionType;
 use Dbout\WpHook\Exceptions\HookException;
 use Dbout\WpHook\FileLocators\FileLocator;
 use Dbout\WpHook\Helpers\SortActions;
+use Dbout\WpHook\Instantiators\ClassInstantiatorInterface;
+use Dbout\WpHook\Instantiators\ContainerClassInstantiator;
 use Dbout\WpHook\Loaders\AttributeDirectoryLoader;
 use Psr\Cache\CacheItemPoolInterface;
+use Psr\Container\ContainerInterface;
 
 class HookLoader
 {
     private const string CACHE_KEY = '_app_wp_autoloader_hooks';
 
+    protected ?ClassInstantiatorInterface $instantiator = null;
+
     /**
-     * @param string|array<string> $directory
+     * @param string|string[] $directory
      * @param CacheItemPoolInterface|null $cache
+     * @param ContainerInterface|ClassInstantiatorInterface|null $container PSR-11 container or custom instantiator for dependency injection
      */
     public function __construct(
         protected string|array $directory,
         public ?CacheItemPoolInterface $cache = null,
+        ContainerInterface|ClassInstantiatorInterface|null $container = null,
     ) {
+        if ($container instanceof ClassInstantiatorInterface) {
+            $this->instantiator = $container;
+        } elseif ($container instanceof ContainerInterface) {
+            $this->instantiator = new ContainerClassInstantiator($container);
+        }
     }
 
     /**
@@ -66,7 +78,8 @@ class HookLoader
         $hooks = [];
         foreach ($directories as $directory) {
             $loader = new AttributeDirectoryLoader(
-                new FileLocator([$directory])
+                new FileLocator([$directory]),
+                $this->instantiator,
             );
 
             $hooks = array_merge($hooks, $loader->load($directory));
