@@ -8,20 +8,28 @@ namespace Dbout\WpHook\Loaders;
 
 use Dbout\WpHook\Action;
 use Dbout\WpHook\FileLocators\FileLocatorInterface;
+use Dbout\WpHook\Instantiators\ClassInstantiatorInterface;
+use Dbout\WpHook\Instantiators\ReflectionClassInstantiator;
 
 class AttributeDirectoryLoader
 {
+    protected AttributeClassLoader $loader;
+
     /**
      * @param FileLocatorInterface $fileLocator
-     * @param AttributeClassLoader $loader
+     * @param ClassInstantiatorInterface|null $instantiator
      */
     public function __construct(
         protected FileLocatorInterface $fileLocator,
-        protected AttributeClassLoader $loader = new AttributeClassLoader(),
+        ?ClassInstantiatorInterface $instantiator = null,
     ) {
         if (!\function_exists('token_get_all')) {
             throw new \LogicException('The Tokenizer extension is required for the routing attribute loader.');
         }
+
+        $this->loader = new AttributeClassLoader(
+            $instantiator ?? new ReflectionClassInstantiator()
+        );
     }
 
     /**

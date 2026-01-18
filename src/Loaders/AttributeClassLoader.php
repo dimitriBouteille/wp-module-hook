@@ -11,9 +11,19 @@ use Dbout\WpHook\Attributes\Action as ActionAttribute;
 use Dbout\WpHook\Attributes\Filter as FilterAttribute;
 use Dbout\WpHook\Attributes\FilterInterface;
 use Dbout\WpHook\Exceptions\HookException;
+use Dbout\WpHook\Instantiators\ClassInstantiatorInterface;
+use Dbout\WpHook\Instantiators\ReflectionClassInstantiator;
 
 class AttributeClassLoader implements InterfaceLoader
 {
+    /**
+     * @param ClassInstantiatorInterface $instantiator
+     */
+    public function __construct(
+        protected ClassInstantiatorInterface $instantiator = new ReflectionClassInstantiator(),
+    ) {
+    }
+
     /**
      * @inheritDoc
      * @return Action[]
@@ -141,7 +151,7 @@ class AttributeClassLoader implements InterfaceLoader
             name: $filter->getName(),
             priority: $filter->getPriority(),
             acceptedArgs: $filter->getAcceptedArgs(),
-            classInstance: $class->newInstanceWithoutConstructor(),
+            classInstance: $this->instantiator->instantiate($class->getName()),
             methodName: $fncName,
             dependencies: $dependencies,
             actionType: $filter->getActionType(),
